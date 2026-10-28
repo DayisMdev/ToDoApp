@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/88637d4473.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header>
+        <h1>TO DO APP</h1>
+    </header>
+
+    <main>
+        
+    <article>
+        <section class="containerHeader">
+            
+            <button class="containerHeader__btnNew" id="btnNewWork">New</button>
+            <form class="containerHeader__containerSearchMenu" id="searchNewWork">
+                <input class="containerHeader__containerSearchMenu__inputSearch" type="search" name="" id="searchWork" placeholder="Search your work">
+                <input class="containerHeader__containerSearchMenu__inputSubmit" type="submit">
+            </form>
+            <button id="btnFilterWork"><i class="fa-solid fa-filter"></i></button>
+
+        </section>
+    </article>
+
+    <article class="containerMain">
+        <section class="containerMain--contentAllCheck">
+            <label for="checkAllWorks">Select All</label>
+            <input class="checkAllWork" type="checkbox" name="" id="checkAllWorks">
+        </section>
+        <section>
+            <div>
+                <ul id="containerWorks">
+                </ul>
+            </div>
+        </section>
+    </article>
+    </main>
+    
+    <footer class="footer">
+        <p>Copyright © 2026 Dayana Meneses. All rights reserved.</p>
+    </footer>
+
+<!-- CONTAINER CREATE WORK -->
+    <div id="containerCreateWork" hidden>
+        <form method="POST" id="formNewWork" action="/">
+        <h3>Create work</h3>
+            <div>
+                <label for="title--work">Enter Title</label>
+                <input name="titleWork" type="text" placeholder="Title Work">
+            </div>
+            <div>
+                <label for="description--work">Enter resume</label>
+                <input name="descriptionWork" id="description--work" type="text" placeholder="description (optional)">
+            </div>
+            <div class="div-editWork--containerBtn" id="div-editWork--containerBtn">
+                <button id="btnClosedNewWork">Cancel</button>
+                <input type="submit">
+            </div>
+        </form>
+    </div>
+
+<!-- CONTAINER EDIT WORK -->
+    <div id="containerEditWork" hidden>
+        <form id="formEditWork" action="/" method="post">
+            <h3>EDIT WORK</h3>
+            <div>
+                <label for="">Edit title</label>
+                <input id="formEditWork__input--title" type="text" placeholder="enter">
+            </div>
+            
+            <div>
+                <label for="">Edit description</label>
+                <input id="formEditWork__input--description" type="text" placeholder="enter">
+            </div>
+            <div class="div-editWork--containerBtn" id="div-NewWork--containerBtn">
+                <button id="btnClosedEditWork">Cancel</button>
+                <input type="submit" value="Edit">
+            </div>
+        </form>
+    </div>
+
+
+    <script src="index.js"></script>
+</body>
+</html>

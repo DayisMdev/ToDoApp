@@ -1,0 +1,798 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #0b0f19;
+    --surface: #111827;
+    --surface-hover: #172033;
+    --border: #253047;
+
+    --primary: #008aff;
+    --primary-hover: #0074d9;
+
+    --danger: #ff315b;
+    --danger-hover: #e5234d;
+
+    --text: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    --radius: 16px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(0, 138, 255, 0.12),
+            transparent 35%
+        ),
+        var(--bg);
+
+    color: var(--text);
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    padding: 30px 15px;
+    padding-bottom: 50px;
+}
+
+
+/* =========================
+   ELEMENTOS GENERALES
+========================= */
+
+button,
+input {
+    outline: none;
+    border: none;
+    background: none;
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+
+
+/* =========================
+   TITULO
+========================= */
+
+h1 {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+
+    margin-bottom: 30px;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #7cc7ff
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.containerHeader {
+    width: min(700px, 100%);
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-areas:
+        "searchContainer searchContainer searchContainer filterBtn"
+        "btnNewWork btnNewWork btnNewWork filterBtn";
+
+    grid-template-columns: 1fr 1fr 1fr auto;
+
+    gap: 12px;
+
+    padding: 18px;
+
+    background: rgba(17, 24, 39, 0.75);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+#searchNewWork {
+    grid-area: searchContainer;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    background: #0b1220;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    padding: 0 14px;
+
+    transition: 0.2s ease;
+}
+
+#searchNewWork:focus-within {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(0, 138, 255, 0.12);
+}
+
+#searchWork {
+    width: 100%;
+    padding: 12px 5px;
+
+    color: var(--text);
+}
+
+#searchWork::placeholder {
+    color: var(--text-muted);
+}
+
+
+/* =========================
+   NEW BUTTON
+========================= */
+
+#btnNewWork {
+    grid-area: btnNewWork;
+
+    width: 100%;
+
+    padding: 12px 20px;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #008aff,
+        #006fe6
+    );
+
+    color: white;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+
+    box-shadow:
+        0 8px 20px rgba(0, 138, 255, 0.2);
+}
+
+#btnNewWork:hover {
+    background: linear-gradient(
+        135deg,
+        #1594ff,
+        #0080ff
+    );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(0, 138, 255, 0.3);
+}
+
+
+/* =========================
+   FILTER BUTTON
+========================= */
+
+#btnFilterWork {
+    grid-area: filterBtn;
+
+    align-self: center;
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 12px;
+
+    color: var(--text-secondary);
+
+    border: 1px solid var(--border);
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+#btnFilterWork:hover {
+    background: var(--surface-hover);
+    color: white;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+   ========================= */
+
+.containerMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 20px;
+    width: min(700px, 100%);
+    margin: 20px auto 0;
+    & > .containerMain--contentAllCheck {
+        display: flex;
+        justify-content: start;
+        flex-direction: row-reverse;
+        & > label {
+            margin-left: 6px;
+        }
+        & .checkAllWork {
+            grid-area: check;
+
+            appearance: none;
+
+            width: 21px;
+            height: 21px;
+
+            border: 2px solid #475569;
+
+            border-radius: 50px;
+
+            cursor: pointer;
+
+            display: grid;
+            place-content: center;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .checkAllWork::before {
+            content: "✓";
+
+            color: white;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            transform: scale(0);
+
+            transition: transform 0.15s ease;
+        }
+
+        .checkAllWork:hover {
+            border-color: var(--primary);
+        }
+
+        .checkAllWork:checked {
+            background: var(--primary);
+            border-color: var(--primary);
+
+            box-shadow:
+                0 0 12px rgba(0, 138, 255, 0.35);
+        }
+
+        .checkAllWork:checked::before {
+            transform: scale(1);
+        }
+    }
+}
+
+
+/* =========================
+   MAIN - TASK CONTAINER
+========================= */
+
+#containerWorks {/* 
+    width: min(700px, 100%); */
+
+    margin: 20px auto 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    list-style: none;
+}
+
+
+/* =========================
+   TASK CARD
+========================= */
+
+#containerWorks li {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+        "check content actions";
+
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17, 24, 39, 0.95),
+            rgba(13, 20, 33, 0.95)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        opacity 0.2s ease;
+}
+
+#containerWorks li:hover {
+    transform: translateY(-2px);
+
+    border-color: #334155;
+
+    background: var(--surface-hover);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================
+   CHECKBOX
+========================= */
+
+.checkWork {
+    grid-area: check;
+
+    appearance: none;
+
+    width: 21px;
+    height: 21px;
+
+    border: 2px solid #475569;
+
+    border-radius: 50px;
+
+    cursor: pointer;
+
+    display: grid;
+    place-content: center;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.checkWork::before {
+    content: "✓";
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    transform: scale(0);
+
+    transition: transform 0.15s ease;
+}
+
+.checkWork:hover {
+    border-color: var(--primary);
+}
+
+.checkWork:checked {
+    background: var(--primary);
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 12px rgba(0, 138, 255, 0.35);
+}
+
+.checkWork:checked::before {
+    transform: scale(1);
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+   TASK CONTENT
+========================= */
+
+#containerWorks > span{
+    grid-area: content;
+}
+
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+#containerWorks li > div {
+    grid-area: actions;
+    display: flex;
+    gap: 6px;
+}
+
+.btnEditWork,
+.btnDeleteWork {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    color: var(--text-secondary);
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btnEditWork:hover {
+    background: rgba(0, 138, 255, 0.12);
+    color: var(--primary);
+}
+
+.btnDeleteWork:hover {
+    background: rgba(255, 49, 91, 0.12);
+    color: var(--danger);
+}
+
+
+/* =========================
+   COMPLETED TASK
+========================= */
+
+.completed h4,
+.completed p {
+    text-decoration: line-through;
+}
+
+.completed h4 {
+    color: var(--text-muted);
+}
+
+.completed p {
+    color: #475569;
+}
+
+.completed {
+    opacity: 0.65;
+}
+
+.completed:hover {
+    opacity: 0.8;
+}
+
+
+/* =========================
+   CREATE WORK MODAL
+========================= */
+
+.containerCreateWork {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+
+/* =========================
+   MODAL BACKGROUND
+========================= */
+
+.containerCreateWork::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(2, 6, 23, 0.78);
+
+    backdrop-filter: blur(8px);
+
+    z-index: -1;
+}
+
+
+/* =========================
+   MODAL FORM
+========================= */
+
+.containerCreateWork form {
+    width: min(420px, 100%);
+
+    padding: 28px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151e2f,
+            #0e1625
+        );
+
+    border: 1px solid #2b3952;
+
+    border-radius: 22px;
+
+    color: var(--text);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55);
+
+    animation: modalIn 0.2s ease;
+}
+
+
+/* =========================
+   MODAL TITLE
+========================= */
+
+.containerCreateWork form h3 {
+    font-size: 1.4rem;
+
+    margin-bottom: 5px;
+}
+
+
+/* =========================
+   MODAL INPUT GROUPS
+========================= */
+
+.containerCreateWork form > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.containerCreateWork label {
+    color: var(--text-secondary);
+
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.containerCreateWork input[type="text"] {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    color: var(--text);
+
+    background: #0b1220;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.containerCreateWork input[type="text"]:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(0, 138, 255, 0.1);
+}
+
+.containerCreateWork input::placeholder {
+    color: var(--text-muted);
+}
+
+
+/* =========================
+   MODAL BUTTONS
+========================= */
+
+#div-NewWork--containerBtn,
+#div-editWork--containerBtn {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.div-NewWork--containerBtn button,
+.div-NewWork--containerBtn [type="submit"], 
+.div-editWork--containerBtn button,
+.div-editWork--containerBtn [type="submit"] {
+    padding: 11px 15px;
+
+    border-radius: 10px;
+
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+.div-NewWork--containerBtn button, 
+.div-editWork--containerBtn button {
+    flex: 1;
+
+    background: rgba(255, 49, 91, 0.12);
+
+    border: 1px solid rgba(255, 49, 91, 0.25);
+
+    color: #ff6b87;
+}
+
+.div-NewWork--containerBtn button:hover {
+    background: rgba(255, 49, 91, 0.2);
+}
+
+.div-NewWork--containerBtn [type="submit"], 
+.div-editWork--containerBtn [type="submit"] {
+    flex: 2;
+
+    background: linear-gradient(
+        135deg,
+        #008aff,
+        #006fe6
+    );
+
+    box-shadow:
+        0 8px 20px rgba(0, 138, 255, 0.2);
+}
+
+.div-NewWork--containerBtn [type="submit"]:hover {
+    filter: brightness(1.1);
+
+    transform: translateY(-1px);
+}
+
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    background-color: #006fe6;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 10px 0;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+    .containerHeader {
+        grid-template-areas:
+            "searchContainer searchContainer"
+            "btnNewWork filterBtn";
+
+        grid-template-columns: 1fr auto;
+
+        padding: 12px;
+    }
+
+    #btnFilterWork {
+        width: 45px;
+        height: 45px;
+    }
+
+    #containerWorks li {
+        padding: 13px;
+
+        gap: 10px;
+    }
+
+    .btnEditWork,
+    .btnDeleteWork {
+        width: 34px;
+        height: 34px;
+    }
+
+    .containerCreateWork form {
+        padding: 22px;
+    }
+}
+
+
